@@ -70,7 +70,7 @@ services:
   #     - 9001: 控制台端口，浏览器访问此端口管理文件
   # =========================================
   minio:
-    image: minio/minio
+    image: milvusdb/minio:RELEASE.2024-12-18T13-15-44Z
     container_name: interview-minio
     # 启动命令：指定数据目录和控制台地址
     command: server /data --console-address ":9001"
@@ -100,7 +100,7 @@ services:
   #   - 解决了"谁来创建 Bucket"的问题，实现了基础设施的自动化配置，无需手动操作。
   # =========================================
   createbuckets:
-    image: minio/mc
+    image: pgsty/mc:latest
     depends_on:
       minio:
         condition: service_healthy # 必须等待 MinIO 服务健康（不仅仅是启动）
